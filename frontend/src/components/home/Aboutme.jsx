@@ -1,11 +1,14 @@
 import React from 'react'
 import "./styles/Aboutme.scss"
 import aboutMe from '../../utils/aboutme'
+
 const Aboutme = () => {
-  const profile = aboutMe.basic
-  const skills = aboutMe.skills
-  const exper = aboutMe.experiences
-  const interests = aboutMe.interests
+  // 데이터가 없을 경우를 대비한 기본값 설정
+  const profile = aboutMe?.basic || {}
+  const skills = aboutMe?.skills || []
+  const exper = aboutMe?.experiences || []
+  const interests = aboutMe?.interests || []
+
   return (
     <div className='inner aboutme-inner'>
       <h1 className="tit">
@@ -17,9 +20,7 @@ const Aboutme = () => {
           profile
         </h2>
         <p className="txt">
-          들어가는 최종 요소나 사용된다. <br />
-          레이아웃 들어가는 로렘 부르며,
-          <br /> 들어가는 최종 전에 프로젝트 사용할 사용된다.
+          <br />
         </p>
       </div>
 
@@ -28,41 +29,56 @@ const Aboutme = () => {
           <h4 className='list-lst'>profile</h4>
           <ul className="lst">
             <li>
-              <strong>이름</strong>: {profile.name}
+              <strong>이름</strong>: {profile.name || 'N/A'}
             </li>
             <li>
-              <strong>나이</strong>: {profile.age}
+              <strong>나이</strong>: {profile.age || 'N/A'}
             </li>
             <li>
-              <strong>사는곳</strong>: {profile.location}
+              <strong>사는곳</strong>: {profile.location || 'N/A'}
             </li>
             <li>
-              <strong>MBTI</strong>: {profile.mbti}
+              <strong>MBTI</strong>: {profile.mbti || 'N/A'}
             </li>
           </ul>
         </div>
+
         <div className="in-wrap skills-wrap">
           <h4 className='list-lst'>Skills</h4>
           <ul className="lst">
-            {skills.map((skill,i)=>(
-              <li key={i}>{skill}</li>
-            ))}
+            {skills.length > 0 ? (
+              skills.map((skill, i) => (
+                <li key={i}>{skill}</li>
+              ))
+            ) : (
+              <li></li>
+            )}
           </ul>
         </div>
+
         <div className="in-wrap exper-wrap">
-          <h4 className='list-lst'>      💼 Experiences</h4>
+          <h4 className='list-lst'>💼 Experiences</h4>
           <ul className="lst">
-            {exper.map((exp,i)=>(
-              <li key={i}>{exp}</li>
-            ))}
+            {exper.length > 0 ? (
+              exper.map((exp, i) => (
+                <li key={i}>{exp}</li>
+              ))
+            ) : (
+              <li></li>
+            )}
           </ul>
         </div>
+
         <div className="in-wrap interests-wrap">
-          <h4 className='list-lst'>           🌱 Interests</h4>
+          <h4 className='list-lst'>🌱 Interests</h4>
           <ul className="lst">
-            {interests.map((int,i)=>(
-              <li key={i}>{int}</li>
-            ))}
+            {interests.length > 0 ? (
+              interests.map((int, i) => (
+                <li key={i}>{int}</li>
+              ))
+            ) : (
+              <li></li>
+            )}
           </ul>
         </div>
       </div>
